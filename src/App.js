@@ -1,32 +1,31 @@
+import userEvent from '@testing-library/user-event';
 import React from 'react';
 
-//class App extends Component {
-//    render() {
-        //return <h1>Hello, world!</h1>;
-//        return(
-//            <React.Fragment>
-//            <label htmlFor="bar">bar</label>
-//            <input type="text" onChange={() => {console.log("I Clicked.")}} />
-//            </React.Fragment>
-//        )
-        //return <input type="text" onChange={() => {console.log("I Clicked.")}} />;
-//    }
-//}
-
 const App = () => {
+    const profiles = [
+        { name: "Taro", age: 10 },
+        { name: "Hanako", age: 5},
+        { name: "NoName"}
+    ]
     return(
         <div>
-            <Cat />
-            <Cat />
-            <Cat />
-            <Cat />
+            {
+                profiles.map((profiles, index) => {
+                    return <User name={profiles.name} age={profiles.age} key={index} />
+
+                })
+            }
         </div>
 
     ) 
 }
 
-const Cat = () => {
-    return <div>Meow!</div>
+const User = (props) => {
+    return <div>Hi, Iam {props.name}, and {props.age} years old!</div>
+}
+
+User.defaultProps = {
+    age: 1
 }
 
 export default App;
